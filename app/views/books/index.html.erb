@@ -1,0 +1,45 @@
+<h1>Books</h1>
+<table cellspacing="10">
+  <thread>
+    <tr>
+      <th>本のタイトル</th>
+      <th>感想</th>
+      <th colspan="3"></th>
+    </tr>
+  </thread>
+  <% @books.each do |book| %>
+  <tbody>
+    <tr>
+      <td><%= book.本のタイトル %></td>
+      <td><%= book.感想 %></td>
+      <td><a><%= link_to "Show",book_path(book.id) %></a><td>
+      <td><a><%= link_to "Edit",edit_book_path(book.id) %></a></td>
+      <td><a><%= link_to "Destroy", book_path(book.id), method: :delete, "data-confirm" => "are you sure" %></a></td>
+    </tr>
+  </tbody>
+  <% end %>
+</table>
+<h2>New Book</h2>
+<% if @book.errors.any? %>
+  <%= @book.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @book.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
+<%= form_with model: @Book, local: true do |f| %>
+
+  <div class="field">
+    <label for="book_title">本のタイトル</label>
+    <%= f.text_field :本のタイトル %>
+  </div>
+
+  <div class="field">
+    <label for="book_body">感想</label>
+    <%= f.text_area :感想 %>
+  </div>
+
+  <%= f.submit "create book" %>
+<% end %>
