@@ -1,4 +1,4 @@
 class Book < ApplicationRecord
-  validates :本のタイトル, presence: true
-  validates :感想, presence: true
+  validates :title, presence: { message: "can't be blank" }
+  validates :body, presence: { message: "can't be blank" }
 end
